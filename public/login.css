@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}   
+
+
+.container-login {
+    display: flex;
+    background-color: #e5e5e5;
+    justify-content: space-around;
+    background-image: url(../FotosSite/3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right center;
+    height: 729px;
+    width: 100%;
+    position: relative;
+}
+
+
+.container-bem-vindo {
+    display: flex;
+    align-items: center;
+    font-family: system-ui, -apple-system, 'Open Sans', sans-serif;
+    margin-right: 320px;
+}
+
+
+h1 {
+    display: flex;
+    color: aliceblue;
+    bottom: 50%;
+    font-size: 45px;
+    align-items: center;
+}
+
+
+.link_voltar {
+    display: flex;
+    color: #e5e5e5;
+    background-color: #910101;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-left: 22px;
+    font-size: 18px;
+    text-decoration: none;
+    position: absolute;
+    left: 30px;
+    margin-top: 30px;
+    width: 90px;
+    height: 42px;
+}
+
+
+.main-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.main-input h3 {
+    display: flex;
+    margin-bottom: 100px;
+    font-size: 40px;
+
+}
+
+
+.main-input input {
+    display: flex;
+    border: none;
+    height: 52px;
+    width: 370px;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+
+.button button {
+    width: 150px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #910101;
+    color: #e5e5e5;
+    font-size: 17px;
+    align-items: center;
+}
+
+.button p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+
+
+.button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
