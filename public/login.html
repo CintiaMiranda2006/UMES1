@@ -27,11 +27,11 @@
             <h3>Entre na sua conta</h3>
 
             <input type="text" id="input_nome" placeholder="Nome"> <br>
-            <input type="text" id="input_email" placeholder="Email"> <br>
-            <input type="text" id="input_senha" placeholder="Senha"> <br> 
+            <input type="text" id="email_input" placeholder="Email"> <br>
+            <input type="password" id="senha_input" placeholder="Senha"> <br> 
 
             <div class="button">
-                <button onclick="cadastro()"><a href="pagina_inicial.html">ENTRAR</a></button>
+                <button onclick="entrar()">ENTRAR</button>
                 <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se já!</a></p>
             </div>
 
@@ -48,7 +48,7 @@
 <script>
 
     function entrar() {
-        aguardar();
+        // aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -91,7 +91,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "pagina_inicial.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
