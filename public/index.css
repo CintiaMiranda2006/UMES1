@@ -62,7 +62,7 @@ box-sizing: border-box;
 
  .container-inicial {
     display: flex;
-    background-image: url(../FotosSite/Inicio_UMES2.png);
+    background-image: url(assets/FotosSite/Inicio_UMES2.png);
     height: 630px ;
     background-size: cover;
     background-color: #3b3b3b;
