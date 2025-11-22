@@ -51,7 +51,7 @@ box-sizing: border-box;
     background-color: #E5E5E5;
     text-decoration: none;
     color: #6B0101;
-    font-weight: 550;
+    font-weight: 880;
    
 }
 
@@ -77,7 +77,7 @@ box-sizing: border-box;
     justify-content: center;
     color: aliceblue;
     flex-direction: column;
-    font-size: 20px;
+    font-size: 25px;
 
  }
 
@@ -97,9 +97,11 @@ box-sizing: border-box;
 .container-umes {
     display: flex;
     background-color: #E5E5E5;
-    height: 580px;
+    height: 700px;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+
+   
 
 }
 
@@ -117,6 +119,7 @@ box-sizing: border-box;
     padding-left: 25px;
     padding-right: 22px;
     font-size: 20px;
+
     
 
 }
@@ -143,7 +146,7 @@ box-sizing: border-box;
 .container-movimento {
     display: flex;
     background-color: #6B0101; 
-    height: 500px;
+    height: 580px;
     flex-direction: column;
 
 }
@@ -151,7 +154,7 @@ box-sizing: border-box;
 .container-titulo-movimento {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 60px;
     flex-direction: row;
     color: #fff;
     text-align: center;
@@ -194,3 +197,105 @@ margin-right: 65px;
 
 
 /* FIM MOVIMENTO*/
+
+
+
+    /* INICIO DAS CONQUISTAS */
+
+.container-conquistas {
+    display: flex;
+    background-color: #E5E5E5;  
+    height: 550px;
+    text-align: center;
+    justify-content: space-evenly;
+
+}
+
+.titulo-conquistas{
+    display: flex;
+    position: absolute;
+    margin-bottom: 40px;
+    margin-top: 80px;
+    font-size: 23px;
+
+}
+
+
+.caixa-conquistas{
+    display: flex;
+    background-color: #fff;
+    border-radius: 25px;
+    width: 360px;
+    height: 380px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size:  20px;   
+    align-items: center; 
+    margin-top: 200px;
+    padding: 10px;
+}
+
+.caixa-conquistas img{
+    width: 110px;
+
+}
+
+    /* FIM DAS CONQUISTAS */
+
+    /* FOOTER INICIO */
+
+    .footer {
+    background: #E5E5E5; /* fundo vermelho do footer */
+    background-image: url("assets/FotosSite/5footer.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 300px;
+
+}
+
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.footer-links p,
+.footer-links a {
+    color: #ccc;
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.footer-col a:hover {
+    color: #fff;
+}
+
+.footer hr {
+    border: none;
+    border-top: 2px solid #fff;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.footer-fim {
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* FOOTER FIM */
