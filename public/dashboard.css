@@ -67,19 +67,22 @@ body {
 }
 
 
+/* INICIO DO GRAFICO*/
+
 .pai-grafico{
     display: flex;
+    flex-direction: column; 
+    align-items: center;     
+    justify-content: start;
     height: 100vh;
     width: 91%;
     background-color: #D9D9D9;
-    justify-content: space-evenly;
 }
 
 
 .kpi {
     display: flex;
     background-color: #6B0101;
-    margin-top: 50px;
     border-radius: 20px;
     align-items: center;
     justify-content: center;
@@ -89,3 +92,29 @@ body {
     color: #fff;  
     font-size: 20px;
 }
+
+.kpis-linha{
+    display: flex;
+    gap: 40px;
+    margin-top:40px;
+    justify-content: space-evenly;
+    gap: 120px;
+
+}
+
+
+
+.grafico1{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    
+  
+}
+
+
+
+
+/* FIM DO GRAFICO*/
+  

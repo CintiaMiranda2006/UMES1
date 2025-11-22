@@ -7,10 +7,11 @@
 
     <link rel="stylesheet" href="pagina_inicial.css">
 </head>
-<body>
+<body onload="carregarPagina()">
 
     <div class="nav-bar">
-        <h2> Olá estudante </h2>
+        <h2 id="nome_usuario"> Olá estudante </h2>
+
     <div class="links">
         <a href="pagina_inicial.html">Inicio</a>
         <a href="">Questionário</a>
@@ -48,3 +49,10 @@
        
 </body>
 </html>
+<script>
+    function carregarPagina(){
+        var nomeUsuario = sessionStorage.NOME_USUARIO
+        nome_usuario.innerHTML = `Olá, ${nomeUsuario}!`
+
+    }
+</script>

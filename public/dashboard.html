@@ -6,6 +6,8 @@
     <title>Dashboard</title>
     
     <link rel="stylesheet" href="dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -26,18 +28,59 @@
 
     <div class="pai-grafico">
 
+
+    <div class="kpis-linha">
+
     <div class="kpi">
-     <span>kpi 1</span>
+        <span>kpi 1</span>
     </div>
 
-       <div class="kpi">
+    <div class="kpi">
         <span>kpi 2</span>
     </div>
 
-       <div class="kpi">
+    <div class="kpi">
        <span> kpi 3</span>
     </div>
 
     </div>
+
+
+    <div class="grafico1">
+        <canvas id="graficoUMES" width="690" height="450"></canvas>
+    </div>
+
 </body>
+    </div>
+
+    </div>
+
+  
 </html>
+
+<script>
+  const ctx = document.getElementById('graficoUMES');
+  var titulos = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+  var valores = [10,20,30,25,10,12]
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: titulos,
+      datasets: [{
+        label: '# of Votes',
+        data: valores,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+</script>
