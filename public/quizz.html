@@ -1,15 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Quiz</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="quizz.css">
 </head>
 
 
 <body onload="onloadEsconder()">
+
+       <div class="nav-bar">
+        <h2 id="nome_usuario"> Olá estudante </h2>
+
+    <div class="links">
+        <a href="pagina_inicial.html">Inicio</a>
+        <a href="quizz.html">Questionário</a>
+        <a href="dashboard.html">Dashboard</a>
+    </div>
+
+
+    <div class="sair">
+        <a href="index.html">SAIR</a>
+    </div>
+
+    </div>
+
     <div id="container-quizz">
 
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
@@ -43,10 +60,10 @@
             <div id="perguntaDaQuestaoAtual" class="padding-8">
                 <span id="spanQuestaoExibida" class="text-bold"></span>
             </div>
-
+<!-- 
             <div id="infoAlternativas" class="padding-8">
                 <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
+            </div> -->
 
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
@@ -130,11 +147,11 @@
         },
 
          {
-            pergunta: "Qual conquista estudantil garante desconto em eventos culturais?",
-            alternativaA: "Passe Livre",
-            alternativaB: "Bolsa de estudos",
-            alternativaC: "Meia-entrada estudantil ",
-            alternativaD: "Acesso gratuito à internet",
+            pergunta: "Em que ano o voto facultativo para jovens de 16 anos foi estabelecido no Brasil?",
+            alternativaA: "1964",
+            alternativaB: "1976",
+            alternativaC: "1988",
+            alternativaD: "1993",
             alternativaCorreta: "alternativaC"
         }, 
 
@@ -261,12 +278,14 @@
 
         desmarcarRadioButtons()
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+        if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
+        } 
+        // else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+        //     alert("Atenção... a próxima é a ultima questão!")
+        //     preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        // } 
+        else {
             finalizarJogo()
         }
         limparCoresBackgroundOpcoes()
