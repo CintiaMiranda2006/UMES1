@@ -26,10 +26,10 @@
         <div class="main-input">
             <h3>Crie sua conta</h3>
 
-            <input type="text" id="input_nome" placeholder="Nome"> <br>
-            <input type="text" id="input_email" placeholder="Email"> <br>
-            <input type="password" id="input_senha" placeholder="Senha"> <br>
-            <input type="password" id="confirmacao_senha_input" placeholder="Confirme sua senha"> <br> <br>
+            <input type="text" id="input_nome" placeholder="Nome" oninput="validarNome()" > <br>
+            <input type="text" id="input_email" placeholder="Email" oninput="validarEmail()" > <br>
+            <input type="password" id="input_senha" placeholder="Senha" oninput="validarSenha()"> <br>
+            <input type="password" id="confirmacao_senha_input" placeholder="Confirme sua senha" oninput="validarSenhaRepetida()"> <br> <br>
 
             <div class="button">
                 <button onclick="cadastrar()">CADASTRAR</button>
@@ -51,6 +51,7 @@
     var nomeVar = input_nome.value;
     var emailVar = input_email.value;
     var senhaVar = input_senha.value;
+    var repetirSenha = confirmacao_senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
    
     // Verificando se há algum campo em branco
@@ -62,7 +63,11 @@
     ) {
       alert("Preencha todos os campos");
       return;
-    }
+
+    } else if (senha !== repetirSenha) {
+            alert('As senhas precisam ser iguais!')
+        } else { 
+    
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -96,5 +101,52 @@
       });
 
     return false;
+
   }
+  }
+
+
+  function validarNome() { //Função para verificar se é um nome válido
+        var nome = input_nome.value
+        var contador = 0
+
+        while (contador < nome.length) { //Enquanto o contador for menor que o tamanho do nome
+            if (nome.length <= 1) { //Se o tamanho do nome for menor ou igual a 1, o nome é inválido
+                input_nome.style.border = 'solid 2px red'
+                nome_span.innerHTML = 'Insira um nome válido'
+            } else {
+                input_nome.style.border = 'solid 2px #28DF99'
+                nome_span.innerHTML = ''
+            }
+
+            contador++
+        }
+    }
+
+        function validarSenha() { //Função que valida a Senha inserida
+        var senha = input_senha.value
+
+        if (senha.length < 8) { //Se o tamanho da senha for menor que 8 caracteres, ela não será válida
+            senha_span.innerHTML = 'Senha necessita de, no mínimo, 8 caracteres'
+            input_senha.style.border = 'solid 2px red'
+        } else {
+            senha_span.innerHTML = ''
+            input_senha.style.border = 'solid 2px #28DF99'
+        }
+    }
+
+    function validarSenhaRepetida() { //Função que valida a senha repetida
+        var senha = input_senha.value
+        var senhaRepetida = input_confirmar_senha.value
+
+        if (senhaRepetida !== senha || senhaRepetida.length < 8) { //Se as senhas forem diferentes ou se o tamanho da senha repetida for menor que 8, a senha repetida será inválida
+            confirmar_senha_span.innerHTML = 'As senhas precisam ser iguais'
+            input_confirmar_senha.style.border = 'solid 2px red'
+        } else {
+            confirmar_senha_span.innerHTML = ''
+            input_confirmar_senha.style.border = 'solid 2px #28DF99'
+        }
+    }
 </script>
+
+

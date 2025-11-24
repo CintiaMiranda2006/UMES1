@@ -190,12 +190,11 @@
             alternativaC: "Faz todos os estudantes terem as mesmas opiniões ",
             alternativaD: "Dá voz, apoio, oportunidades e sensação de pertencimento",
             alternativaCorreta: "alternativaD"
-        },
-
-
+        }
 
     ]
 
+    
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
@@ -379,5 +378,52 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
+        // deixar o fetch que vai inserir o resultado do usuário no banco de dados 
+
+      cadastrar()
     }
+
+     function cadastrar() {
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var certasVar = certas;
+    var erradasVar = erradas;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var fkQuiz = nadaATEentao
+    var fkUsuario = nadaATEentao
+   
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        certasServer: certasVar,
+        erradasServer: erradasVar,
+        quizServer: fkQuiz,
+        usuarioServer: fkUsuario
+
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+     
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
 </script>
