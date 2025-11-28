@@ -11,19 +11,19 @@
 
 <body onload="onloadEsconder()">
 
-       <div class="nav-bar">
+    <div class="nav-bar">
         <h2 id="nome_usuario"> Olá estudante </h2>
 
-    <div class="links">
-        <a href="pagina_inicial.html">Inicio</a>
-        <a href="quiz.html">Questionário</a>
-        <a href="dashboard.html">Dashboard</a>
-    </div>
+        <div class="links">
+            <a href="pagina_inicial.html">Inicio</a>
+            <a href="quiz.html">Questionário</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
 
 
-    <div class="sair">
-        <a href="index.html">SAIR</a>
-    </div>
+        <div class="sair">
+            <a href="index.html">SAIR</a>
+        </div>
 
     </div>
 
@@ -60,7 +60,7 @@
             <div id="perguntaDaQuestaoAtual" class="padding-8">
                 <span id="spanQuestaoExibida" class="text-bold"></span>
             </div>
-<!-- 
+            <!-- 
             <div id="infoAlternativas" class="padding-8">
                 <span><em>Escolha uma opção dentre as abaixo:</em></span>
             </div> -->
@@ -88,7 +88,7 @@
                 <button onclick="selecionarQuestao()" id="selectQustao">Submeter resposta</button>
 
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button> <br><br>
-                
+
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button>  -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
@@ -128,7 +128,7 @@
             alternativaCorreta: "alternativaA"
         },
 
-            {
+        {
             pergunta: "O que o movimento estudantil promove para os jovens?",
             alternativaA: "Apenas eventos culturais",
             alternativaB: "Formação cidadã e consciência política",
@@ -137,7 +137,7 @@
             alternativaCorreta: "alternativaB"
         },
 
-           {
+        {
             pergunta: "Qual conquista estudantil garante desconto em eventos culturais?",
             alternativaA: "Passe Livre",
             alternativaB: "Bolsa de estudos",
@@ -146,16 +146,16 @@
             alternativaCorreta: "alternativaC"
         },
 
-         {
+        {
             pergunta: "Em que ano o voto facultativo para jovens de 16 anos foi estabelecido no Brasil?",
             alternativaA: "1964",
             alternativaB: "1976",
             alternativaC: "1988",
             alternativaD: "1993",
             alternativaCorreta: "alternativaC"
-        }, 
+        },
 
-         {
+        {
             pergunta: "O que geralmente se conquista por meio da organização coletiva dos estudantes?",
             alternativaA: "Novas disciplinas obrigatórias",
             alternativaB: "Melhoria na merenda, infraestrutura e transporte ",
@@ -164,7 +164,7 @@
             alternativaCorreta: "alternativaB"
         },
 
-           {
+        {
             pergunta: "Participar do movimento estudantil ajuda a desenvolver:",
             alternativaA: "Técnicas de desenho",
             alternativaB: "Habilidades de edição de vídeo",
@@ -173,8 +173,8 @@
             alternativaCorreta: "alternativaC"
         },
 
-        
-           {
+
+        {
             pergunta: "Qual benefício facilita o acesso dos estudantes à escola?",
             alternativaA: "Vagas garantidas no vestibular",
             alternativaB: "Livros gratuitos",
@@ -194,7 +194,7 @@
 
     ]
 
-    
+
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
@@ -279,7 +279,7 @@
 
         if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } 
+        }
         // else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
         //     alert("Atenção... a próxima é a ultima questão!")
         //     preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
@@ -364,14 +364,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         selectQustao.disabled = true
@@ -380,50 +380,49 @@
 
         // deixar o fetch que vai inserir o resultado do usuário no banco de dados 
 
-      cadastrar()
-    }
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var certasVar = certas;
+        var erradasVar = erradas;
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-     function cadastrar() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var certasVar = certas;
-    var erradasVar = erradas;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var fkQuiz = nadaATEentao
-    var fkUsuario = nadaATEentao
-   
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        certasServer: certasVar,
-        erradasServer: erradasVar,
-        quizServer: fkQuiz,
-        usuarioServer: fkUsuario
+            // Enviando o valor da nova input
+            fetch("/resultado/registrarResultado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    certasServer: certasVar,
+                    erradasServer: erradasVar,
+                    idUsuarioServer: idUsuario
 
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-     
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+                    if (resposta.ok) {
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    // finalizarAguardar();
+                });
+                
+
+                certas = 0
+                erradas = 0
+
+            return false;
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-      });
+    
 
-    return false;
-  }
 </script>

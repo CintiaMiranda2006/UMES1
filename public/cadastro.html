@@ -55,20 +55,6 @@
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
    
     // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" 
-    ) {
-      alert("Preencha todos os campos");
-      return;
-
-    } else if (senha !== repetirSenha) {
-            alert('As senhas precisam ser iguais!')
-        } else { 
-    
-
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -102,7 +88,6 @@
 
     return false;
 
-  }
   }
 
 

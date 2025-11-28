@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
-var tentativaController = require("../controllers/tentativaController");
+var resultadoController = require("../controllers/resultadoController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrar", function (req, res) {
-    tentativaController.cadastrar(req, res);
+router.post("/registrarResultado", function (req, res) {
+    resultadoController.registrarResultado(req, res);
 })
 
 
