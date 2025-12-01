@@ -1,87 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    
-    <link rel="stylesheet" href="dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="dashboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
 
-    <div class="nav-bar">
-        <h2> Olá estudante </h2>
+<body onload="carregarPagina()">
+
+  <div class="nav-bar">
+    <h2 id="nome_usuario"> Olá estudante </h2>
     <div class="links">
-        <a href="pagina_inicial.html">Inicio</a>
-        <a href="quiz.html">Questionário</a>
-        <a href="dashboard.html">Dashboard</a>
+      <a href="pagina_inicial.html">Inicio</a>
+      <a href="quiz.html">Questionário</a>
+      <a href="dashboard.html">Dashboard</a>
     </div>
 
 
     <div class="sair">
-        <a href="index.html">SAIR</a>
+      <a href="index.html">SAIR</a>
     </div>
 
-    </div>
+  </div>
 
-    <div class="pai-grafico">
+  <div class="pai-grafico">
 
 
     <div class="kpis-linha">
 
-    <div class="kpi">
-        <span>Porcentagem de acerto</span>
-    </div>
+      <div class="kpi">
+        <p>Menor Pontuação</p>
+        <span id="kpi1">Sem valor</span>
+      </div>
 
-    <div class="kpi">
-        <span> Tentativas </span>
-    </div>
+      <div class="kpi">
+        <p> Tentativas </p>
+        <span id="kpi2">Sem valor</span>
+      </div>
 
-    <div class="kpi">
-       <span> Maior pontuacao</span>
-    </div>
+      <div class="kpi">
+        <p> Maior Pontuação</p>
+        <span id="kpi3">Sem valor</span>
+      </div>
 
     </div>
 
 
     <div class="grafico1">
-        <canvas id="graficoUMES" width="690" height="450"></canvas>
+      <canvas id="graficoUMES" width="690" height="450"></canvas>
     </div>
 
 </body>
-    </div>
+</div>
 
-    </div>
+</div>
 
-  
+
 </html>
 
 <script>
+  function carregarPagina() {
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    nome_usuario.innerHTML = `Olá, ${nomeUsuario}!`;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    console.log(idUsuario);
 
-  const ctx = document.getElementById('graficoUMES');
-  var titulos = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-  var valores = [10,20,30,25,10,12]
+    fetch(`/resultado/buscarDadosKPI/${idUsuario}`, {
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: titulos,
-      datasets: [{
-        label: '# of Votes',
-        data: valores,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO buscarDadosKPI()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          menorPontuacao = json.menorPontuacao;
+          totalTentativa = json.totalResultado;
+          maiorPontuacao = json.maiorPontuacao;
+
+          kpi1.innerHTML = `${menorPontuacao}`;
+          kpi2.innerHTML = `${totalTentativa}`;
+          kpi3.innerHTML = `${maiorPontuacao}`;
+
+
+          console.log(menorPontuacao, totalTentativa, maiorPontuacao)
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar buscar os dados!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
       }
-    }
-  });
 
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    fetch(`/resultado/buscarDadosGrafico/${idUsuario}`, {
+
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO buscarDadosGrafico()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          // passar os dados json para variáveis e criar o gráfico
+          var tentativa1 = json[0].acertos;
+          var tentativa2 = json[1].acertos;
+          var tentativa3 = json[2].acertos;
+          var tentativa4 = json[3].acertos;
+
+          console.log(tentativa1, tentativa2, tentativa3, tentativa4);
+
+          const ctx = document.getElementById('graficoUMES');
+          var titulos = ['tentativa1', 'tentatva2', 'tentativa3', 'tentativa4']
+          var valores = [tentativa1, tentativa2, tentativa3, tentativa4]
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: titulos,
+              datasets: [{
+                label: 'TENTATIVAS DO USUARIO',
+                data: valores,
+                borderWidth: 4
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar buscar os dados!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
 
 </script>

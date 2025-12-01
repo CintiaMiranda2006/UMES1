@@ -8,5 +8,13 @@ router.post("/registrarResultado", function (req, res) {
     resultadoController.registrarResultado(req, res);
 })
 
+router.get("/buscarDadosKPI/:idUsuario", function (req, res) {
+    resultadoController.buscarDadosKPI(req, res);
+})
+
+router.get("/buscarDadosGrafico/:idUsuario", function (req, res) {
+    resultadoController.buscarDadosGrafico(req, res);
+})
+
 
 module.exports = router;

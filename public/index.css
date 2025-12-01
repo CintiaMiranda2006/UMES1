@@ -13,6 +13,9 @@ box-sizing: border-box;
     padding: 15px;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 
 }
 
@@ -38,9 +41,24 @@ box-sizing: border-box;
     text-decoration: none;
     color: azure;
     font-size: 17px;
+    position: relative;
+    padding-bottom: 2px;
 }
 
+.links-navbar a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.4s ease-in-out;
+}
 
+.links-navbar a:hover::after {
+    width: 100%;
+}
 
 
 .login-cadastro-navbar a{
@@ -63,12 +81,11 @@ box-sizing: border-box;
  .container-inicial {
     display: flex;
     background-image: url(assets/FotosSite/Inicio_UMES2.png);
-    height: 630px ;
+    height: 100vh;
     background-size: cover;
     background-color: #3b3b3b;
     align-items: center;
     justify-content: center;
-
  }
 
  .main-txt  {
@@ -235,10 +252,6 @@ margin-right: 65px;
     padding: 10px;
 }
 
-.caixa-conquistas img{
-    width: 110px;
-
-}
 
     /* FIM DAS CONQUISTAS */
 

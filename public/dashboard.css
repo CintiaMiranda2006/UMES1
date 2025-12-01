@@ -82,15 +82,25 @@ body {
 
 .kpi {
     display: flex;
+    flex-direction: column;
     background-color: #6B0101;
-    border-radius: 20px;
+    border-radius: 35px;
     align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    height: 90px;
-    width: 230px;
+    justify-content: center;    
+    height: 130px;
+    width: 250px;
     color: #fff;  
     font-size: 20px;
+}
+
+.kpi span {
+    margin-top: 25px;
+    font-size: 30px;
+}
+
+.kpi p{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .kpis-linha{

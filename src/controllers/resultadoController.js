@@ -17,7 +17,7 @@ function registrarResultado(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        resultadoModel.registrarResultado(erradas, certas, idUsuario)
+        resultadoModel.registrarResultado(certas, erradas, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -36,6 +36,76 @@ function registrarResultado(req, res) {
     }
 }
 
+function buscarDadosKPI(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!");
+    } else {
+
+        resultadoModel.buscarDadosKPI(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length >= 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                        
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Dados de Kpi inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar a busca de dados! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
+function buscarDadosGrafico(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!");
+    } else {
+
+        resultadoModel.buscarDadosGrafico(idUsuario)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length >= 1) {
+                        console.log(resultado);
+                        res.json(resultado);
+                        
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Dados de Kpi inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar a busca de dados! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
 module.exports = {
-    registrarResultado
+    registrarResultado,
+    buscarDadosKPI,
+    buscarDadosGrafico
 }
