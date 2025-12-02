@@ -26,12 +26,14 @@
     margin-right: 329px;
 }
 
+
 h1 {
+    display: flex;
     color: aliceblue;
+    bottom: 330px;
+    font-size: 40px;
+    right: 980px;
     position: absolute;
-    bottom: 50%;
-    left: 12%;
-    font-size: 45px;
 }
 
 
@@ -42,6 +44,7 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 2px;
+    margin-right: 50px;
 }
 
 .main-input h3 {
