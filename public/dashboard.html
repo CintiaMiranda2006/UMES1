@@ -129,27 +129,58 @@
           var titulos = ['tentativa1', 'tentatva2', 'tentativa3', 'tentativa4']
           var valores = [tentativa1, tentativa2, tentativa3, tentativa4]
 
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: titulos,
-              datasets: [{
-                label: 'TENTATIVAS DO USUARIO',
-                data: valores,
-                borderWidth: 4
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-        });
-
+         new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: titulos,
+    datasets: [{
+      label: 'TENTATIVAS DO USUARIO',
+      data: valores,
+      backgroundColor: '#6B0101',
+      borderColor: '#c9c9c9',
+      borderWidth: 2
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: '#000000',
+          font: {
+            size: 14
+          }
+        },
+        grid: {
+          color: 'rgba(107, 1, 1, 0.25)'
+        }
+      },
+      x: {
+        ticks: {
+          color: '#000000',
+          font: {
+            size: 14
+          }
+        },
+        grid: {
+          display: false
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: '#000000',
+          font: {
+            size: 16,
+            weight: 'bold'
+          }
+        }
+      }
+    }
+  }
+})
+});
       } else {
 
         console.log("Houve um erro ao tentar buscar os dados!");

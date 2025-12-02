@@ -83,7 +83,7 @@ body {
 .kpi {
     display: flex;
     flex-direction: column;
-    background-color: #6B0101;
+    background-color: rgb(105, 3, 3);
     border-radius: 35px;
     align-items: center;
     justify-content: center;    
@@ -112,15 +112,21 @@ body {
 
 }
 
-.grafico1{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 80px;
-        
-    }
+#graficoUMES {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(107, 1, 1, 0.3);
+}
 
+.grafico1 {
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
 
 
 
