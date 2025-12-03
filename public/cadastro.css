@@ -36,6 +36,11 @@ h1 {
     position: absolute;
 }
 
+#msg_span{
+    bottom: 30px;
+    font-size: 18px;
+    padding: 10px;
+}
 
 .main-input {
     display: flex;

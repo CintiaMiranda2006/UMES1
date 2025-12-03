@@ -101,7 +101,6 @@ function buscarDadosGrafico(req, res) {
                 }
             );
     }
-
 }
 
 module.exports = {

@@ -16,30 +16,31 @@
 
 <div class="container-cadastro">
 
-        <a href="index.html" class="link_voltar">
-            Voltar
-        </a>
+  <a href="index.html" class="link_voltar">
+    Voltar
+  </a>
 
-        <h1>Faça parte da transformação!</h1>
+  <h1>Faça parte da transformação!</h1>
 
 
-        <div class="main-input">
-            <h3>Crie sua conta</h3>
+  <div class="main-input">
+    <h3>Crie sua conta</h3>
 
-            <input type="text" id="input_nome" placeholder="Nome" oninput="validarNome()" > <br>
-            <input type="text" id="input_email" placeholder="Email" oninput="validarEmail()" > <br>
-            <input type="password" id="input_senha" placeholder="Senha" oninput="validarSenha()"> <br>
-            <input type="password" id="confirmacao_senha_input" placeholder="Confirme sua senha" oninput="validarSenhaRepetida()"> <br> <br>
+    <input type="text" id="input_nome" placeholder="Nome" oninput="validarNome()" value="Frizza"> <br>
+    <input type="text" id="input_email" placeholder="Email" oninput="validarEmail()" value="frizza@email.com"> <br>
+    <input type="password" id="input_senha" placeholder="Senha" oninput="validarSenha()" value="frizza123"> <br>
+    <input type="password" id="confirmacao_senha_input" placeholder="Confirme sua senha" oninput="validarSenhaRepetida()" value="frizza123"> <br> <br>
+    <span id="msg_span"></span>
+    <div class="button">
+      <button onclick="cadastrar()">CADASTRAR</button>
+      <p>Já é cadastrado? <a href="login.html">Acesse sua conta!</a></p>
 
-            <div class="button">
-                <button onclick="cadastrar()">CADASTRAR</button>
-                <p>Já é cadastrado? <a href="login.html">Acesse sua conta!</a></p>
-
-            </div>
-        </div>
     </div>
+  </div>
+</div>
 
 </body>
+
 </html>
 
 <script>
@@ -53,7 +54,7 @@
     var senhaVar = input_senha.value;
     var repetirSenha = confirmacao_senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-   
+
     // Verificando se há algum campo em branco
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -90,48 +91,55 @@
 
   }
 
+  function validarEmail() { 
+            var emailVar = input_email.value
+            var contador = 0
 
-  function validarNome() { //Função para verificar se é um nome válido
-        var nome = input_nome.value
-        var contador = 0
+            if (emailVar.endsWith('sptech.school') || 
+                emailVar.endsWith('.com')) {
 
-        while (contador < nome.length) { //Enquanto o contador for menor que o tamanho do nome
-            if (nome.length <= 1) { //Se o tamanho do nome for menor ou igual a 1, o nome é inválido
-                input_nome.style.border = 'solid 2px red'
-                nome_span.innerHTML = 'Insira um nome válido'
+                while (contador < emailVar.length) { 
+                    contador++
+
+                    if (emailVar[contador] == '@') { 
+                        input_email.style.border = 'solid 2px #28DF99'
+                        msg_span.innerHTML = ''
+                    }
+                }
             } else {
-                input_nome.style.border = 'solid 2px #28DF99'
-                nome_span.innerHTML = ''
+                input_email.style.border = 'solid 2px red'
+                msg_span.innerHTML = 'Formato de email inválido'
             }
-
-            contador++
         }
+
+
+
+  function validarSenha() {
+    var senhaVar = input_senha.value;
+
+    if (senhaVar.length < 8) {
+      msg_span.innerHTML = 'Senha necessita de, no mínimo, 8 caracteres';
+      input_senha.style.border = 'solid 2px red';
+    } else {
+      msg_span.innerHTML = '';
+      input_senha.style.border = 'solid 2px #28DF99';
     }
+  }
 
-        function validarSenha() { //Função que valida a Senha inserida
-        var senha = input_senha.value
 
-        if (senha.length < 8) { //Se o tamanho da senha for menor que 8 caracteres, ela não será válida
-            senha_span.innerHTML = 'Senha necessita de, no mínimo, 8 caracteres'
-            input_senha.style.border = 'solid 2px red'
-        } else {
-            senha_span.innerHTML = ''
-            input_senha.style.border = 'solid 2px #28DF99'
-        }
+  function validarSenhaRepetida() {
+    var senhaVar = input_senha.value;
+    var repetirSenha = confirmacao_senha_input.value;
+
+    if (repetirSenha !== senhaVar || repetirSenha.length < 8) {
+      msg_span.innerHTML = 'As senhas precisam ser iguais';
+      confirmacao_senha_input.style.border = 'solid 2px red';
+    } else {
+      msg_span.innerHTML = '';
+      confirmacao_senha_input.style.border = 'solid 2px #28DF99';
     }
+  }
 
-    function validarSenhaRepetida() { //Função que valida a senha repetida
-        var senha = input_senha.value
-        var senhaRepetida = input_confirmar_senha.value
 
-        if (senhaRepetida !== senha || senhaRepetida.length < 8) { //Se as senhas forem diferentes ou se o tamanho da senha repetida for menor que 8, a senha repetida será inválida
-            confirmar_senha_span.innerHTML = 'As senhas precisam ser iguais'
-            input_confirmar_senha.style.border = 'solid 2px red'
-        } else {
-            confirmar_senha_span.innerHTML = ''
-            input_confirmar_senha.style.border = 'solid 2px #28DF99'
-        }
-    }
+
 </script>
-
-
